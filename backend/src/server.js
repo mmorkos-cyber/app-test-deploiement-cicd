@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const users = require('./data/users.json');
@@ -27,7 +28,7 @@ app.post('/api/login', (req, res) => {
       message: 'Identifiants incorrects'
     });
   }
-  token = process.env.TOKEN
+  const token = process.env.TOKEN
   const { password: _password, ...safeUser } = user;
   // Faux token volontairement prédictible et aucune protection des données retournées.
   return res.json({
