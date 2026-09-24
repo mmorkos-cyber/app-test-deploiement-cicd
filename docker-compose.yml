@@ -1,0 +1,32 @@
+services:
+
+  backend: 
+    build: ./backend
+    image: app:backend
+
+    environment:
+      - name=value
+
+    volumes: 
+      - ./backend/src:/app/src
+      - /app/node_modules
+    
+    ports: 
+      - "3000:3000"
+    
+  frontend:
+    build:
+      context: ./frontend
+      target: builder
+
+    image: app:frontend
+
+    ports:
+      - "4200:4200"
+
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+    command: npm start -- --host 0.0.0.0 --port 4200 
+
