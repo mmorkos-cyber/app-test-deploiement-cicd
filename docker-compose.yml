@@ -4,6 +4,9 @@ services:
     build: ./backend
     image: app:backend
 
+    env_file:
+      - ./backend/.env
+
     environment:
       - name=value
 
@@ -12,7 +15,7 @@ services:
       - /app/node_modules
     
     ports: 
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     
   frontend:
     build:
@@ -22,7 +25,7 @@ services:
     image: app:frontend
 
     ports:
-      - "4200:4200"
+      - "127.0.0.1:4200:4200"
 
     volumes:
       - ./frontend:/app

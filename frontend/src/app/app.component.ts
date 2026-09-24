@@ -35,8 +35,8 @@ export class AppComponent {
     this.api.login(this.username, this.password).subscribe({
       next: response => {
         localStorage.setItem('demo-token', response.token);
-        localStorage.setItem('demo-user', JSON.stringify(response.user));
-        this.user = response.user;
+        localStorage.setItem('demo-user', JSON.stringify(response.safeUser));
+        this.user = response.safeUser;
         this.loading = false;
         this.loadInfo();
       },
