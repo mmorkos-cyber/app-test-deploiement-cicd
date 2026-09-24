@@ -1,8 +1,7 @@
 services:
 
   backend: 
-    build: ./backend
-    image: app:backend
+    image: lolaedoc:backend
 
     env_file:
       - ./backend/.env
@@ -18,11 +17,8 @@ services:
       - "127.0.0.1:3000:3000"
     
   frontend:
-    build:
-      context: ./frontend
-      target: builder
 
-    image: app:frontend
+    image: lolaedoc:frontend
 
     ports:
       - "127.0.0.1:4200:4200"
