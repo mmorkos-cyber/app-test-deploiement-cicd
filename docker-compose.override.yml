@@ -2,18 +2,23 @@ services:
 
   backend:
     container_name: backend
+
     build:
-      context: .
-      dockerfile: ./backend/dockerfile
-    volumes: 
+      context: ./backend
+      dockerfile: Dockerfile
+
+    volumes:
       - ./backend/src:/app/src
       - /app/node_modules
-  
+
+
   frontend:
     container_name: frontend
+
     build:
       context: ./frontend
       target: builder
+
     volumes:
       - ./frontend:/app
       - /app/node_modules
