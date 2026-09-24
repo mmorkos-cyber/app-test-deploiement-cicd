@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 export interface LoginResponse {
   success: boolean;
   token: string;
-  user: {
+  safeUser: {
     id: number;
     username: string;
     password: string;
@@ -24,7 +24,7 @@ export interface InfoResponse {
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   // Volontairement codé en dur : fonctionne en local, posera problème au déploiement.
-  private readonly apiUrl = 'http://backend:3000/api';
+  private readonly apiUrl = 'http://localhost:3000/api';
 
   constructor(private readonly http: HttpClient) {}
 
