@@ -1,0 +1,30 @@
+services:
+
+  backend: 
+    build: ./backend
+    image: app:backend
+
+    environment:
+      - name=value
+
+    volumes: 
+      - ./backend/src:/app/src
+      - /app/node_modules
+    
+    ports: 
+      - "3000"
+
+
+  FROM node:22
+
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 3001
+
+CMD ["npm","run","dev"]
