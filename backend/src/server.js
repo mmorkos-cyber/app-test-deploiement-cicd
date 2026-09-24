@@ -47,6 +47,6 @@ app.get('/api/info', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Backend démarré sur le port :${PORT}`);
 });

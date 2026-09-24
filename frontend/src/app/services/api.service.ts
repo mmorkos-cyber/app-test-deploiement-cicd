@@ -24,7 +24,7 @@ export interface InfoResponse {
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   // Volontairement codé en dur : fonctionne en local, posera problème au déploiement.
-  private readonly apiUrl = 'http://localhost:3000/api';
+  private readonly apiUrl = 'http://51.103.120.186/api';
 
   constructor(private readonly http: HttpClient) {}
 
