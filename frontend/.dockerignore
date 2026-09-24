@@ -1,0 +1,16 @@
+# Environnements 
+**/.env/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Angular
+.angular
