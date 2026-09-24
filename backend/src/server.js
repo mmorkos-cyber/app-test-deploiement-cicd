@@ -4,7 +4,7 @@ const users = require('./data/users.json');
 const { getTrainingInfo } = require('./services/info.service');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Volontairement permissif pour l'exercice.
 app.use(cors());
@@ -27,12 +27,13 @@ app.post('/api/login', (req, res) => {
       message: 'Identifiants incorrects'
     });
   }
-
+  token = process.env.TOKEN
+  const { password: _password, ...safeUser } = user;
   // Faux token volontairement prédictible et aucune protection des données retournées.
   return res.json({
     success: true,
-    token: `demo-token-${user.id}`,
-    user
+    token: `${token}-${user.id}`,
+    safeUser
   });
 });
 
@@ -46,5 +47,5 @@ app.get('/api/info', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Backend démarré sur http://localhost:${PORT}`);
+  console.log(`Backend démarré sur le port :${PORT}`);
 });
