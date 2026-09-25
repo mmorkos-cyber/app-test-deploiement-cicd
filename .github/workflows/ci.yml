@@ -33,4 +33,5 @@ jobs:
         with:
           context: .
           push: true
+          tag:
       
