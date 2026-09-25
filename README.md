@@ -51,3 +51,32 @@ Ouvrir ensuite : `http://localhost:4200`
 - `alice` / `password`
 - `bob` / `1234`
 - `admin` / `admin`
+
+## Github
+
+cloner le repo git 
+
+```bash
+https://github.com/mmorkos-cyber/app-test-deploiement-cicd.git
+```
+## Docker
+
+Créer un .env dans le dossier backend en se basant sur .env.exemple, puis lancer :
+```powershell
+docker compose up
+```
+## Déploiement
+Pour le déploiement:
+- Création d'un dossier **workflows** .github.
+- Création d'un fichier **ci.yml**, qui décrit les étapes du déploiement.
+- Création des **secrets** sur github (variable environnements + connextion repo dockerhub).
+- Test lors du push sur dev du script
+- Configuration de la VM d'Azure :
+  - Dans le dossier où se trouve le compose, nous avons créé un fichier **deploy.sh**.
+  - Dans ce fichier script on lance la récupération des images docker (pull), puis démarrage de contenaires (up).
+  - Autorisation d'accès au groupe d'execution (x) du fichier **deploy.sh**
+  - Configuration de la **crontab** à 5 minutes pour le test.
+  - Test réussi 
+
+## Fonctionnement de la CI
+A chaque push le runner github execute les actions présente dans le fichier **ci.yml**, qui ordonne de faire le test du backend, puis de recréer les images docker et les pousser dans dockerhub. Si une erreur est identifiée lors de l'execution du script le pipeline s'arrête et empêche l'intégration.
