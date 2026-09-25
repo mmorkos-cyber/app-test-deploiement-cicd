@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-runner:
-    runs-on: test-backend
+    runs-on: backend
 
     steps:
       - name: Checkout
@@ -28,8 +28,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construction image
-        run: docker compose build
-
-      - name: Image push
-        run: docker compose push
+      - name: Build et Push
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          tags: monuser/monapp:latest
+      
