@@ -22,6 +22,12 @@ jobs:
         working-directory: ./backend
         run: npm test
 
+
+      - name: Création du fichier .env
+        env:
+          ENV_CONTENT: ${{ secrets.ENV_EXEMPLE }}
+        run: printf '%s\n' "$ENV_CONTENT" > backend/.env
+
       - name: Connexion à Docker Hub
         uses: docker/login-action@v4
         with:
