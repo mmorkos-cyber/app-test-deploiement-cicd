@@ -1,9 +1,10 @@
 name: test_deploiement
 run-name: docker-build
 
-on: 
+on:
   push:
-    branches: dev
+    branches:
+      - dev
 
 jobs:
   test-runner:
@@ -11,5 +12,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: app-test-deploiement-cicd/backend/test/info.services.test.js
-      - run: npm test
+        uses: actions/checkout@v4
+
+      - name: Installation des dépendances
+        working-directory: ./backend
+        run: npm install
+
+      - name: Lancement des tests
+        working-directory: ./backend
+        run: npm test
