@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-runner:
-    runs-on: backend
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -33,4 +33,5 @@ jobs:
         with:
           context: .
           push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
       
