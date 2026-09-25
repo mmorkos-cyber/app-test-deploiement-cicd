@@ -21,3 +21,9 @@ jobs:
       - name: Lancement des tests
         working-directory: ./backend
         run: npm test
+
+      - name: Construction image
+        run: docker compose build
+
+      - name: Image push
+        run: docker compose push
